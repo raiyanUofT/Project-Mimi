@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory
+from flask import Flask, render_template, send_from_directory
 from database import db
 from pantry.routes import pantry_blueprint
 import os
