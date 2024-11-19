@@ -1,10 +1,20 @@
 from flask import Flask, send_from_directory
 from database import db
-import config
 from pantry.routes import pantry_blueprint
+import os
+from config import DevelopmentConfig, ProductionConfig
+from dotenv import load_dotenv
 
-app = Flask(__name__, static_folder='static')
-app.config.from_object(config.Config)
+load_dotenv()
+
+# Initialize Flask app
+app = Flask(__name__)
+
+# Load configuration dynamically based on environment
+if os.getenv('FLASK_ENV') == 'development':
+    app.config.from_object(DevelopmentConfig)
+else:
+    app.config.from_object(ProductionConfig)
 
 # Initialize the `db` object with the Flask app
 db.init_app(app)
@@ -12,10 +22,11 @@ db.init_app(app)
 # Register Blueprints
 app.register_blueprint(pantry_blueprint, url_prefix='/pantry')
 
-# Serve the static frontend
+# Serve frontend with dynamic API URL
 @app.route('/')
 def serve_frontend():
-    return send_from_directory('static', 'index.html')
+    api_url = os.getenv('API_URL', 'http://localhost:5000/pantry')  # Default for local
+    return render_template('index.html', api_url=api_url)
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=app.config['DEBUG'], host="0.0.0.0")

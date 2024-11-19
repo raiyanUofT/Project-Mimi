@@ -1,4 +1,5 @@
-const API_URL = 'https://project-mimi.onrender.com/pantry';
+const API_URL = "{{ api_url }}";  // This is the dynamic API URL passed by Flask
+console.log("Using API URL:", API_URL);
 
 async function fetchItems() {
     const response = await fetch(API_URL);
