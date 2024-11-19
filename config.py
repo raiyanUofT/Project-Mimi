@@ -17,3 +17,9 @@ class ProductionConfig(Config):
     """Production configuration."""
     DEBUG = False  # Ensure debug is off in production
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'sqlite:///prod.db')
+
+class TestingConfig(Config):
+    """Testing configuration."""
+    TESTING = True  # Enables testing mode
+    DEBUG = True  # Debugging is helpful during tests
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'  # Use in-memory database for tests

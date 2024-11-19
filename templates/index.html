@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantry Tracker</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Project Mimi</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
-    <h1>Pantry Tracker</h1>
+<body data-page="{{ page }}">
+    <h1>Project Mimi - {{ page.replace('-', ' ').title() }}</h1>
+
+    {% if page == "pantry" %}
+    <!-- Pantry Page -->
     <div id="add-item-form">
         <input type="text" id="item-name" placeholder="Item Name" required>
         <input type="number" id="item-quantity" placeholder="Quantity" required>
@@ -15,13 +18,46 @@
     </div>
     <ul id="pantry-list"></ul>
 
-    <!-- Set the API_URL dynamically using Flask -->
+    <!-- Navigation Link to Add Items Page -->
+    <a href="/add-items" class="navigation-link">Go to Add Items Page</a>
+
+    {% elif page == "add-items" %}
+    <!-- Add Items Page -->
+    <form id="add-items-form">
+        <div id="item-rows">
+            <div class="item-row">
+                <input type="text" name="name[]" placeholder="Item Name" required>
+                <input type="number" name="quantity[]" placeholder="Quantity" required>
+            </div>
+        </div>
+        <button type="button" id="add-row-button">Add Another Item</button>
+        <button type="button" id="preview-button">Preview Items</button>
+    </form>
+
+    <div id="preview-section" style="display: none;">
+        <h2>Preview Items</h2>
+        <table id="preview-table" border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="confirm-button">Confirm and Save</button>
+    </div>
+
+    <!-- Navigation Link to Pantry Page -->
+    <a href="/" class="navigation-link">Home</a>
+    {% endif %}
+
+    <!-- Inject API_URL as a global JavaScript variable -->
     <script>
-        const API_URL = "{{ api_url }}";  // Passed dynamically by Flask
-        console.log("Using API URL:", API_URL);  // Debugging info
+        const API_URL = "{{ api_url }}";
     </script>
 
-    <!-- Link to external script.js -->
-    <script src="/static/script.js"></script>
+    <!-- Main JavaScript -->
+    <script type="module" src="/static/scripts/main.js"></script>
 </body>
 </html>

@@ -23,3 +23,15 @@ h1 {
     justify-content: space-between;
     align-items: center;
 }
+
+.navigation-link {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: blue;
+    font-weight: bold;
+}
+
+.navigation-link:hover {
+    text-decoration: underline;
+}

@@ -22,11 +22,17 @@ db.init_app(app)
 # Register the pantry blueprint
 app.register_blueprint(pantry_blueprint, url_prefix='/pantry')
 
-# Serve frontend with dynamic API URL
+# Serve Pantry Page
 @app.route('/')
-def serve_frontend():
-    api_url = os.getenv('API_URL', 'http://127.0.0.1:5000/pantry')  # Default for local development
-    return render_template('index.html', api_url=api_url)
+def pantry_page():
+    api_url = "/pantry"  # URL for the pantry API
+    return render_template('index.html', page="pantry", api_url=api_url)
+
+# Serve Add Items Page
+@app.route('/add-items')
+def add_items_page():
+    api_url = "/pantry"  # URL for the pantry API
+    return render_template('index.html', page="add-items", api_url=api_url)
 
 if __name__ == "__main__":
     app.run(debug=app.config['DEBUG'], host="0.0.0.0")
