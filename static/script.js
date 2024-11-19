@@ -1,4 +1,4 @@
-const API_URL = 'https://<your-app-name>.onrender.com/pantry';
+const API_URL = 'https://project-mimi.onrender.com/pantry';
 
 async function fetchItems() {
     const response = await fetch(API_URL);
