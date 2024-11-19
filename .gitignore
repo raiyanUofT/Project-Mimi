@@ -1,0 +1,58 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+venv/
+.env/
+
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+
+# Flask instance folder (should not be committed)
+instance/
+
+# Environment variables file
+.env
+
+# SQLite database file
+*.db
+
+# IDE/editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# Dependency directories (e.g., for pipenv, poetry, etc.)
+Pipfile.lock
+poetry.lock
+
+# Docker files (if using Docker)
+docker-compose.override.yml
+.docker/
+Dockerfile
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Test directories (if using pytest or unittest)
+.coverage
+nosetests.xml
+tests/.pytest_cache/
+
+# OS-specific files
+.DS_Store   # macOS
+Thumbs.db   # Windows
+
+# File backups
+*~
