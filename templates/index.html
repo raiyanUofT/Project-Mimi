@@ -14,6 +14,14 @@
         <button id="add-button">Add Item</button>
     </div>
     <ul id="pantry-list"></ul>
-    <script src="script.js"></script>
+
+    <!-- Set the API_URL dynamically using Flask -->
+    <script>
+        const API_URL = "{{ api_url }}";  // Passed dynamically by Flask
+        console.log("Using API URL:", API_URL);  // Debugging info
+    </script>
+
+    <!-- Link to external script.js -->
+    <script src="/static/script.js"></script>
 </body>
 </html>

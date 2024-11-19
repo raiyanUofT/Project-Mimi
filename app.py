@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template
 from database import db
 from pantry.routes import pantry_blueprint
 import os
@@ -19,13 +19,13 @@ else:
 # Initialize the `db` object with the Flask app
 db.init_app(app)
 
-# Register Blueprints
+# Register the pantry blueprint
 app.register_blueprint(pantry_blueprint, url_prefix='/pantry')
 
 # Serve frontend with dynamic API URL
 @app.route('/')
 def serve_frontend():
-    api_url = os.getenv('API_URL', 'http://localhost:5000/pantry')  # Default for local
+    api_url = os.getenv('API_URL', 'http://127.0.0.1:5000/pantry')  # Default for local development
     return render_template('index.html', api_url=api_url)
 
 if __name__ == "__main__":
